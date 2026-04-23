@@ -12,13 +12,16 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS
 
 app.use(cors({
     origin: function (origin, callback) {
-        // allow requests with no origin (like mobile apps or curl requests)
+        // Allow same-origin requests (where origin is undefined or matches the current host)
         if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) === -1) {
+        
+        // If it's a known allowed origin or same-site on Render/Localhost
+        if (allowedOrigins.indexOf(origin) !== -1 || origin.includes('onrender.com') || origin.includes('localhost') || origin.includes('127.0.0.1')) {
+            return callback(null, true);
+        } else {
             const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
             return callback(new Error(msg), false);
         }
-        return callback(null, true);
     },
     credentials: true
 }));
