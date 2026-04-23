@@ -77,6 +77,20 @@ app.use((req, res) => {
     res.status(404).render('404', { title: 'Page Not Found' });
 });
 
+// Health Check
+app.get('/health', (req, res) => res.json({ status: 'OK', timestamp: new Date() }));
+
+// Database Connection Test
+const db = require('./config/db');
+db.getConnection()
+    .then(conn => {
+        console.log('✅ Connected to Database Successfully!');
+        conn.release();
+    })
+    .catch(err => {
+        console.error('❌ Database Connection Failed:', err.message);
+    });
+
 app.listen(PORT, () => {
-    console.log(`INDS Server running on http://localhost:${PORT}`);
+    console.log(`🚀 Server running on port ${PORT}`);
 });
