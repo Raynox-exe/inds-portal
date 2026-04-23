@@ -1,0 +1,54 @@
+<%- include('partials/header') %>
+
+<section class="page-header">
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>Get in touch with the Institute for Niger Delta Studies.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px;">
+            <div>
+                <h3 style="margin-bottom: 30px; color: var(--primary-dark);">Contact Information</h3>
+                
+                <div style="margin-bottom: 25px;">
+                    <strong style="color: var(--primary);">📍 Location</strong>
+                    <p>Institute for Niger Delta Studies,<br>Niger Delta University, Wilberforce Island,<br>Bayelsa State, Nigeria.</p>
+                </div>
+
+                <div style="margin-bottom: 25px;">
+                    <strong style="color: var(--primary);">📧 Email</strong>
+                    <p>info@inds.org.ng<br>submissions@inds.org.ng</p>
+                </div>
+
+                <div style="margin-bottom: 25px;">
+                    <strong style="color: var(--primary);">📞 Phone</strong>
+                    <p>+234 (806 476 1059)<br>+234 (803 234 5678)</p>
+                </div>
+            </div>
+
+            <div style="background: white; padding: 40px; border-radius: 12px; box-shadow: var(--shadow); border: 1px solid var(--border-color);">
+                <h3 style="margin-bottom: 20px;">Send a Message</h3>
+                <form action="/contact" method="POST">
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600;">Full Name</label>
+                        <input type="text" name="name" required style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 4px;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600;">Email Address</label>
+                        <input type="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 4px;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600;">Message</label>
+                        <textarea name="message" rows="5" required style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 4px;"></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/footer') %>
