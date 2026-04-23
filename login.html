@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Access | INDS</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="replica_node/public/css/main.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <span>📞 +234 (806 476 1059)</span> | 
+                <span>📧 info@inds.org.ng</span>
+            </div>
+            <div class="social-links">
+                <a href="#" style="color:white; margin-left:10px;">Fb</a>
+                <a href="#" style="color:white; margin-left:10px;">Tw</a>
+                <a href="#" style="color:white; margin-left:10px;">In</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="header-content">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="replica_node/public/assets/img/logo.png" alt="INDS Logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/digest">Research Digest</a></li>
+                    <li><a href="/programs">Programs</a></li>
+                    <li><a href="staff.html">Staff</a></li>
+                    <li><a href="/submission">Submission</a></li>
+                    <li><a href="login.html" class="btn active" style="color:white; padding: 5px 15px; margin-top:-5px;">Login</a></li>
+                    <li><a href="signup.html" class="btn btn-outline" style="padding: 5px 15px; margin-top:-5px; margin-left: 10px;">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Login Section -->
+    <section class="hero" style="min-height: 100vh; height: auto; overflow: visible; display: flex; align-items: center; justify-content: center; background: url('replica_node/public/assets/img/hero-gate.jpg') center/cover no-repeat; padding: 120px 20px 60px 20px; position: relative;">
+        <!-- Overlay to ensure text readability if needed -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 31, 63, 0.6); z-index: 1;"></div>
+        
+        <div class="glass-card" style="position: relative; z-index: 2; width: 100%; max-width: 450px; padding: 50px 40px; margin-top: 30px;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h1 style="color: var(--text-white); font-size: 2.2rem; margin-bottom: 10px;">Member Access</h1>
+                <p style="color: rgba(255,255,255,0.8); font-size: 0.95rem;">Sign in to your researcher portal or administrator dashboard.</p>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-white);">Email Address</label>
+                    <input type="email" name="email" id="email" required style="width: 100%; padding: 14px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'">
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 30px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-white);">Password</label>
+                    <input type="password" name="password" id="password" required style="width: 100%; padding: 14px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'">
+                </div>
+                
+                <button type="submit" class="btn" style="width: 100%; padding: 14px; font-size: 1.1rem; border-radius: 8px;" id="loginBtn">Sign In</button>
+                
+                <div style="text-align: center; margin-top: 25px; font-size: 0.95rem;">
+                    <span style="color: rgba(255,255,255,0.7);">Don't have an account?</span> 
+                    <a href="signup.html" style="color: var(--accent); font-weight: 600; text-decoration: none; margin-left: 5px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--accent)'">Register here</a>
+                </div>
+            </form>
+
+            <script>
+                document.getElementById('loginForm').addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const btn = document.getElementById('loginBtn');
+                    const email = document.getElementById('email').value;
+                    const password = document.getElementById('password').value;
+
+                    btn.disabled = true;
+                    btn.innerText = 'Signing in...';
+
+                    try {
+                        const response = await fetch('http://localhost:3000/auth/login', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                            body: JSON.stringify({ email, password })
+                        });
+
+                        const data = await response.json();
+
+                        if (data.success) {
+                            localStorage.setItem('inds_user_name', data.user.name);
+                            // Redirect to the correct dashboard (admin or member)
+                            if (data.redirect === '/admin') {
+                                window.location.href = 'admin_dashboard.html';
+                            } else {
+                                window.location.href = 'member_dashboard.html';
+                            }
+                        } else {
+                            alert(data.message || 'Login failed.');
+                        }
+                    } catch (err) {
+                        console.error('Error:', err);
+                        alert('Unable to connect to the server. Please ensure the backend is running.');
+                    } finally {
+                        btn.disabled = false;
+                        btn.innerText = 'Sign In';
+                    }
+                });
+            </script>
+        </div>
+    </section>
+</main>
+
+<footer class="main-footer" style="margin-top: 0;">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img src="replica_node/public/assets/img/logo-light.png" alt="INDS Logo" style="max-width:200px; margin-bottom:15px; filter: brightness(0) invert(1);">
+                <p>The INDS is a bridge-building institute, chartered by its enabling law to promote development and advance the rights and general welfare of the Niger Delta.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/digest">Research Digest</a></li>
+                    <li><a href="/programs">Programs</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Call for Articles</h3>
+                <p><strong>September - 2024 Issue</strong></p>
+                <p>Submission Last Date: 02/09/2024</p>
+                <p>Acceptance Notification: 40 Days</p>
+                <p>Publication Date: 02/09/2024</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Institute for Niger Delta Studies. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="replica_node/public/js/main.js"></script>
+</body>
+</html>

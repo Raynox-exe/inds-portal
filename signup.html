@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | INDS</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="replica_node/public/css/main.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <span>📞 +234 (806 476 1059)</span> | 
+                <span>📧 info@inds.org.ng</span>
+            </div>
+            <div class="social-links">
+                <a href="#" style="color:white; margin-left:10px;">Fb</a>
+                <a href="#" style="color:white; margin-left:10px;">Tw</a>
+                <a href="#" style="color:white; margin-left:10px;">In</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="header-content">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="replica_node/public/assets/img/logo.png" alt="INDS Logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/digest">Research Digest</a></li>
+                    <li><a href="/programs">Programs</a></li>
+                    <li><a href="staff.html">Staff</a></li>
+                    <li><a href="/submission">Submission</a></li>
+                    <li><a href="login.html" class="btn" style="color:white; padding: 5px 15px; margin-top:-5px;">Login</a></li>
+                    <li><a href="signup.html" class="btn btn-outline active" style="padding: 5px 15px; margin-top:-5px; margin-left: 10px;">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Registration Section -->
+    <section class="hero" style="min-height: 100vh; height: auto; overflow: visible; display: flex; align-items: center; justify-content: center; background: url('replica_node/public/assets/img/hero-gate.jpg') center/cover no-repeat; padding: 120px 20px 60px 20px; position: relative;">
+        <!-- Overlay -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 31, 63, 0.6); z-index: 1;"></div>
+        
+        <div class="glass-card" style="position: relative; z-index: 2; width: 100%; max-width: 500px; padding: 50px 40px; margin-top: 30px;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h1 style="color: var(--text-white); font-size: 2.2rem; margin-bottom: 10px;">Researcher Registration</h1>
+                <p style="color: rgba(255,255,255,0.8); font-size: 0.95rem;">Join our research community and start your submission process today.</p>
+            </div>
+            
+            <form id="signupForm">
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-white);">Full Name</label>
+                    <input type="text" name="fullName" id="fullName" required placeholder="John Doe" style="width: 100%; padding: 14px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'">
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-white);">Email Address</label>
+                    <input type="email" name="email" id="email" required placeholder="name@example.com" style="width: 100%; padding: 14px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'">
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 30px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-white);">Password</label>
+                    <input type="password" name="password" id="password" required style="width: 100%; padding: 14px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'">
+                    <p style="font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-top: 8px;">Minimum 8 characters with a mix of letters and numbers.</p>
+                </div>
+                
+                <button type="submit" class="btn" style="width: 100%; padding: 14px; font-size: 1.1rem; border-radius: 8px;" id="submitBtn">Complete Registration</button>
+                
+                <div style="text-align: center; margin-top: 25px; font-size: 0.95rem;">
+                    <span style="color: rgba(255,255,255,0.7);">Already registered?</span> 
+                    <a href="login.html" style="color: var(--accent); font-weight: 600; text-decoration: none; margin-left: 5px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--accent)'">Sign in</a>
+                </div>
+            </form>
+
+            <script>
+                document.getElementById('signupForm').addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const btn = document.getElementById('submitBtn');
+                    const fullName = document.getElementById('fullName').value;
+                    const email = document.getElementById('email').value;
+                    const password = document.getElementById('password').value;
+
+                    btn.disabled = true;
+                    btn.innerText = 'Creating account...';
+
+                    try {
+                        const response = await fetch('http://localhost:3000/auth/register', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                            body: JSON.stringify({ fullName, email, password })
+                        });
+
+                        const data = await response.json();
+
+                        if (data.success) {
+                            localStorage.setItem('inds_user_name', fullName);
+                            document.getElementById('successModal').style.display = 'flex';
+                        } else {
+                            alert(data.message || 'Registration failed.');
+                        }
+                    } catch (err) {
+                        console.error('Error:', err);
+                        alert('Unable to connect to the server. Please ensure the backend is running.');
+                    } finally {
+                        btn.disabled = false;
+                        btn.innerText = 'Complete Registration';
+                    }
+                });
+            </script>
+        </div>
+    </section>
+</main>
+
+<footer class="main-footer" style="margin-top: 0;">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img src="replica_node/public/assets/img/logo-light.png" alt="INDS Logo" style="max-width:200px; margin-bottom:15px; filter: brightness(0) invert(1);">
+                <p>The INDS is a bridge-building institute, chartered by its enabling law to promote development and advance the rights and general welfare of the Niger Delta.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/digest">Research Digest</a></li>
+                    <li><a href="/programs">Programs</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Call for Articles</h3>
+                <p><strong>September - 2024 Issue</strong></p>
+                <p>Submission Last Date: 02/09/2024</p>
+                <p>Acceptance Notification: 40 Days</p>
+                <p>Publication Date: 02/09/2024</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Institute for Niger Delta Studies. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<div id="successModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+    <div style="background: white; border-radius: 24px; padding: 40px 30px; max-width: 350px; width: 90%; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;">
+        <div style="width: 80px; height: 80px; background: #e6f8ec; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">
+            <i class="fa fa-check-circle" style="color: #22c55e; font-size: 45px;"></i>
+        </div>
+        <h2 style="color: #111827; font-size: 1.6rem; font-weight: 800; margin-bottom: 10px;">Account Created!</h2>
+        <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 30px;">
+            Welcome to INDS. Your account is ready, you can now start your submission process.
+        </p>
+        <button onclick="window.location.href='login.html'" style="background: white; color: #111827; border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px 0; width: 100%; font-weight: 600; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: all 0.2s;" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='white'">
+            Continue to Login
+        </button>
+    </div>
+</div>
+<style>
+    @keyframes popIn {
+        0% { transform: scale(0.8); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+</style>
+<script src="replica_node/public/js/main.js"></script>
+</body>
+</html>

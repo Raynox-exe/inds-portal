@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Staff | INDS</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <style>
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .staff-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            padding-bottom: 25px;
+        }
+        
+        .staff-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: var(--accent);
+        }
+        
+        .staff-img-wrapper {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .staff-img-wrapper i {
+            font-size: 80px;
+            color: rgba(255,255,255,0.2);
+        }
+        
+        .staff-info h3 {
+            font-size: 1.4rem;
+            color: var(--text-white);
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .staff-info p.title {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        
+        .staff-info p.dept {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            padding: 0 20px;
+        }
+        
+        .staff-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .staff-social a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-white);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .staff-social a:hover {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .hero-staff {
+            background: linear-gradient(rgba(0, 31, 63, 0.8), rgba(0, 31, 63, 0.8)), url('assets/img/hero-gate.jpg') center/cover;
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <span>📞 +234 (806 476 1059)</span> | 
+                <span>📧 info@inds.org.ng</span>
+            </div>
+            <div class="social-links">
+                <a href="#" style="color:white; margin-left:10px;">Fb</a>
+                <a href="#" style="color:white; margin-left:10px;">Tw</a>
+                <a href="#" style="color:white; margin-left:10px;">In</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="header-content">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/img/logo.png" alt="INDS Logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="digest.html">Research Digest</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="staff.html" class="active">Staff</a></li>
+                    <li><a href="submission.html">Submission</a></li>
+                    <li id="auth-container" style="display: flex; align-items: center;">
+                        <a href="login.html" class="btn" style="color:white; padding: 5px 15px; margin-top:-5px;">Login</a>
+                        <a href="register.html" class="btn btn-outline" style="padding: 5px 15px; margin-top:-5px; margin-left: 10px;">Sign Up</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="hero-staff">
+        <div class="container">
+            <span class="section-tag" style="background: rgba(211, 140, 63, 0.2); color: #ffd19a;">Meet Our Team</span>
+            <h1 style="color: white; font-size: 3rem; font-weight: 800; margin-bottom: 20px;">The Minds Behind INDS</h1>
+            <p style="max-width: 700px; margin: 0 auto; opacity: 0.9; text-align: center;">Our dedicated team of researchers, educators, and administrators are committed to advancing the development and welfare of the Niger Delta region.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title-wrap text-center center" style="text-align: center;">
+                <h2 class="section-title">Leadership & Faculty</h2>
+                <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">Expert guidance driving academic excellence and regional impact.</p>
+            </div>
+
+            <div class="staff-grid">
+                <!-- Staff 1 -->
+                <div class="staff-card">
+                    <div class="staff-img-wrapper">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="staff-info">
+                        <h3>Prof. Ebimene Akpan</h3>
+                        <p class="title">Director of Research</p>
+                        <p class="dept">Specialist in Conflict Resolution and Strategic Regional Planning.</p>
+                        <div class="staff-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Staff 2 -->
+                <div class="staff-card">
+                    <div class="staff-img-wrapper">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="staff-info">
+                        <h3>Dr. Sarah Okon</h3>
+                        <p class="title">Head of Academic Programs</p>
+                        <p class="dept">Expert in Educational Policy and Curriculum Development for Peace Studies.</p>
+                        <div class="staff-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Staff 3 -->
+                <div class="staff-card">
+                    <div class="staff-img-wrapper">
+                        <i class="fas fa-user-ninja"></i>
+                    </div>
+                    <div class="staff-info">
+                        <h3>Dr. Victor Idiedo</h3>
+                        <p class="title">Senior Research Fellow</p>
+                        <p class="dept">Focused on Environmental Conservation and Sustainable Resource Management.</p>
+                        <div class="staff-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Staff 4 -->
+                <div class="staff-card">
+                    <div class="staff-img-wrapper">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <div class="staff-info">
+                        <h3>Mrs. Chinyere Joyce</h3>
+                        <p class="title">Lead Archivist & Librarian</p>
+                        <p class="dept">Managing the largest digital repository of Niger Delta history and literature.</p>
+                        <div class="staff-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Staff 5 -->
+                <div class="staff-card">
+                    <div class="staff-img-wrapper">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="staff-info">
+                        <h3>Mr. Emmanuel Ebi</h3>
+                        <p class="title">Administrative Manager</p>
+                        <p class="dept">Ensuring smooth operational flow and stakeholder engagement across the institute.</p>
+                        <div class="staff-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Staff 6 -->
+                <div class="staff-card">
+                    <div class="staff-img-wrapper">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="staff-info">
+                        <h3>Join Our Team</h3>
+                        <p class="title">Opportunities</p>
+                        <p class="dept">We are always looking for passionate researchers and volunteers.</p>
+                        <a href="#" class="btn btn-outline" style="color: var(--accent); border-color: var(--accent); padding: 8px 15px; font-size: 0.8rem;">View Vacancies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img src="assets/img/logo.png" alt="INDS Logo" style="height: 50px; filter: brightness(0) invert(1); margin-bottom: 20px;">
+                <p>Institute for Niger Delta Studies<br>Niger Delta University, Wilberforce Island,<br>P.M.B. 071, Yenagoa, Bayelsa State.</p>
+                <p>Tel: +234 (806 476 1059)</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="staff.html">Staff</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Institute for Niger Delta Studies. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        // Check Auth Status
+        try {
+            const apiBase = window.location.port === '3000' ? '' : 'http://localhost:3000';
+            const authRes = await fetch(`${apiBase}/auth/status`);
+            const authData = await authRes.json();
+            const authContainer = document.getElementById('auth-container');
+            
+            if (authData.loggedIn) {
+                const dashboardUrl = authData.user.role === 'admin' ? '/admin' : '/dashboard';
+                authContainer.innerHTML = `<a href="${dashboardUrl}" class="btn" style="color:white; padding: 5px 15px; margin-top:-5px;">Dashboard</a>`;
+            }
+        } catch (err) {
+            console.error('Error checking auth status:', err);
+        }
+    });
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<%- include('partials/header') %>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Research Digest</h1>
+            <p>Access the intellectual output of the Institute for Niger Delta Studies.</p>
+        </div>
+    </section>
+
+    <!-- Digest List -->
+    <section class="section">
+        <div class="container">
+            <div class="volume-selector" style="margin-bottom: 30px;">
+                <form action="/digest" method="GET" style="display: flex; gap: 10px;">
+                    <span style="font-weight: 600; align-self: center;">Browse Issues:</span>
+                    <select name="volume_issue" onchange="const val = this.value.split('|'); if(val.length==2){ window.location='/digest?volume='+val[0]+'&issue='+val[1]; }" style="padding: 10px; border-radius: 4px; border: 1px solid var(--border-color);">
+                        <option value="">All Volumes / Issues</option>
+                        <% allJournals.forEach(j => { %>
+                            <option value="<%= j.volume_no %>|<%= j.issue_no %>" <%= (selectedVol == j.volume_no && selectedIssue == j.issue_no) ? 'selected' : '' %>>
+                                Vol <%= j.volume_no %>, Issue <%= j.issue_no %> (<%= j.publication_year %>)
+                            </option>
+                        <% }); %>
+                    </select>
+                    <a href="/digest" class="btn" style="padding: 10px 20px; font-size: 0.85rem; background: var(--primary-dark);">Clear Filters</a>
+                </form>
+            </div>
+
+            <div class="table-container">
+                <% if (!articles || articles.length === 0) { %>
+                    <div style="text-align: center; padding: 60px; opacity: 0.5;">
+                        <p>No published articles found for this selection.</p>
+                    </div>
+                <% } else { %>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Paper Title</th>
+                                <th>Author(s)</th>
+                                <th>Volume/Issue</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% articles.forEach((art, index) => { %>
+                                <tr>
+                                    <td><%= index + 1 %></td>
+                                    <td><strong><%= art.title %></strong></td>
+                                    <td><%= art.authors %></td>
+                                    <td style="font-size: 0.85rem;">Vol <%= art.volume_no %>, Issue <%= art.issue_no %></td>
+                                    <td>
+                                        <a href="#abstract-<%= art.id %>" class="view-abstract" data-title="<%= art.title %>">Abstract</a> | 
+                                        <a href="/uploads/published/<%= art.pdf_path %>" target="_blank">Download</a>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                <% } %>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hidden Abstracts Source -->
+    <div style="display: none;">
+        <% if (articles) { %>
+            <% articles.forEach(art => { %>
+                <div id="abstract-<%= art.id %>">
+                    <p><%= art.abstract %></p>
+                </div>
+            <% }); %>
+        <% } %>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="abstractModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h3 id="modalTitle" style="color: var(--primary-dark); margin-bottom: 20px; font-family: 'Poppins', sans-serif;"></h3>
+            <div id="modalBody" style="line-height: 1.8; color: var(--text-main);"></div>
+        </div>
+    </div>
+
+<%- include('partials/footer') %>

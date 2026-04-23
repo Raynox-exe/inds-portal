@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | INDS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <span>📞 +234 (806 476 1059)</span> | 
+                <span>📧 info@inds.org.ng</span>
+            </div>
+            <div class="social-links">
+                <a href="#" style="color:white; margin-left:10px;">Fb</a>
+                <a href="#" style="color:white; margin-left:10px;">Tw</a>
+                <a href="#" style="color:white; margin-left:10px;">In</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="header-content">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/img/logo.png" alt="INDS Logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="digest.html">Research Digest</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="staff.html">Staff</a></li>
+                    <li><a href="submission.html">Submission</a></li>
+                    <li><a href="login.html" class="btn active" style="color:white; padding: 5px 15px; margin-top:-5px;">Login</a></li>
+                    <li><a href="register.html" class="btn btn-outline" style="padding: 5px 15px; margin-top:-5px; margin-left: 10px;">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="hero" style="min-height: 100vh; height: auto; overflow: visible; display: flex; align-items: center; justify-content: center; background: url('assets/img/hero-gate.jpg') center/cover no-repeat; padding: 120px 20px 60px 20px; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 31, 63, 0.6); z-index: 1;"></div>
+        
+        <div class="glass-card" style="position: relative; z-index: 2; width: 100%; max-width: 450px; padding: 50px 40px; margin-top: 30px;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h1 style="color: white; font-size: 2.2rem; margin-bottom: 10px;">Member Access</h1>
+                <p style="color: rgba(255,255,255,0.8); font-size: 0.95rem;">Sign in to your researcher portal or administrator dashboard.</p>
+            </div>
+            
+            <div id="message-container"></div>
+
+            <form action="/auth/login" method="POST" id="login-form">
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: white;">Email Address</label>
+                    <input type="email" name="email" required style="width: 100%; padding: 14px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'">
+                </div>
+                
+                <div class="form-group" style="margin-bottom: 30px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: white;">Password</label>
+                    <input type="password" name="password" required style="width: 100%; padding: 14px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'">
+                </div>
+                
+                <button type="submit" class="btn" style="width: 100%; padding: 14px; font-size: 1.1rem; border-radius: 8px;">Sign In</button>
+                
+                <div style="text-align: center; margin-top: 25px; font-size: 0.95rem;">
+                    <span style="color: rgba(255,255,255,0.7);">Don't have an account?</span> 
+                    <a href="register.html" style="color: var(--accent); font-weight: 600; text-decoration: none; margin-left: 5px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--accent)'">Register here</a>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img src="assets/img/logo.png" alt="INDS Logo" style="height: 50px; filter: brightness(0) invert(1); margin-bottom: 20px;">
+                <p>Institute for Niger Delta Studies<br>Niger Delta University, Wilberforce Island,<br>P.M.B. 071, Yenagoa, Bayelsa State.</p>
+                <p>Tel: +234 (806 476 1059)</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="digest.html">Research Digest</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Institute for Niger Delta Studies. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const loginForm = document.getElementById('login-form');
+    const messageContainer = document.getElementById('message-container');
+
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(loginForm);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+            const apiBase = window.location.port === '3000' ? '' : 'http://localhost:3000';
+            const res = await fetch(`${apiBase}/auth/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await res.json();
+            
+            if (result.success) {
+                window.location.href = result.redirect;
+            } else {
+                messageContainer.innerHTML = `
+                    <div style="background: rgba(153, 27, 27, 0.8); color: #fee2e2; padding: 15px; border-radius: 6px; margin-bottom: 25px; font-size: 0.9rem; font-weight: 600; border: 1px solid #991b1b; backdrop-filter: blur(4px);">
+                        ${result.message}
+                    </div>
+                `;
+            }
+        } catch (err) {
+            console.error('Login error:', err);
+            messageContainer.innerHTML = `
+                <div style="background: rgba(153, 27, 27, 0.8); color: #fee2e2; padding: 15px; border-radius: 6px; margin-bottom: 25px; font-size: 0.9rem; font-weight: 600; border: 1px solid #991b1b; backdrop-filter: blur(4px);">
+                    Connection Error. Please ensure the server is running on port 3000.
+                </div>
+            `;
+        }
+    });
+</script>
+</body>
+</html>

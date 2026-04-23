@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | INDS</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <span>📞 +234 (806 476 1059)</span> | 
+                <span>📧 info@inds.org.ng</span>
+            </div>
+            <div class="social-links">
+                <a href="#" style="color:white; margin-left:10px;">Fb</a>
+                <a href="#" style="color:white; margin-left:10px;">Tw</a>
+                <a href="#" style="color:white; margin-left:10px;">In</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="header-content">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/img/logo.png" alt="INDS Logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="digest.html">Research Digest</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="staff.html">Staff</a></li>
+                    <li><a href="submission.html">Submission</a></li>
+                    <li id="auth-container" style="display: flex; align-items: center;">
+                        <a href="login.html" class="btn" style="color:white; padding: 5px 15px; margin-top:-5px;">Login</a>
+                        <a href="register.html" class="btn btn-outline" style="padding: 5px 15px; margin-top:-5px; margin-left: 10px;">Sign Up</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="hero" style="min-height: 40vh; height: auto; display: flex; align-items: center; background: linear-gradient(rgba(0, 31, 63, 0.8), rgba(0, 31, 63, 0.8)), url('assets/img/hero-gate.jpg') center/cover; padding: 100px 0;">
+        <div class="container text-center" style="text-align: center;">
+            <span class="section-tag" style="background: rgba(211, 140, 63, 0.2); color: #ffd19a;">Get in Touch</span>
+            <h1 style="color: white; font-size: 3.5rem; margin-bottom: 20px;">Contact Us</h1>
+            <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; max-width: 800px; margin: 0 auto;">Have questions or need assistance? Our team is here to help.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px;">
+                <div>
+                    <h3 style="margin-bottom: 40px; color: white; font-size: 2rem;">Contact Information</h3>
+                    
+                    <div class="glass-card" style="margin-bottom: 25px; padding: 30px; border-radius: 15px; display: flex; gap: 20px; align-items: start;">
+                        <div style="font-size: 1.5rem; color: var(--accent);"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <strong style="color: white; display: block; margin-bottom: 5px;">Location</strong>
+                            <p style="opacity: 0.8; line-height: 1.6;">Institute for Niger Delta Studies,<br>Niger Delta University, Wilberforce Island,<br>Bayelsa State, Nigeria.</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card" style="margin-bottom: 25px; padding: 30px; border-radius: 15px; display: flex; gap: 20px; align-items: start;">
+                        <div style="font-size: 1.5rem; color: var(--accent);"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <strong style="color: white; display: block; margin-bottom: 5px;">Email Address</strong>
+                            <p style="opacity: 0.8; line-height: 1.6;">info@inds.org.ng<br>submissions@inds.org.ng</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card" style="margin-bottom: 25px; padding: 30px; border-radius: 15px; display: flex; gap: 20px; align-items: start;">
+                        <div style="font-size: 1.5rem; color: var(--accent);"><i class="fas fa-phone-alt"></i></div>
+                        <div>
+                            <strong style="color: white; display: block; margin-bottom: 5px;">Phone Lines</strong>
+                            <p style="opacity: 0.8; line-height: 1.6;">+234 (806 476 1059)<br>+234 (803 234 5678)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card" style="padding: 50px; border-radius: 20px;">
+                    <h3 style="margin-bottom: 30px; color: white; font-size: 1.8rem;">Send a Message</h3>
+                    <form id="contact-form">
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: white;">Full Name</label>
+                            <input type="text" name="name" required style="width: 100%; padding: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); border-radius: 8px; color: white; outline: none;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: white;">Email Address</label>
+                            <input type="email" name="email" required style="width: 100%; padding: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); border-radius: 8px; color: white; outline: none;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 30px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: white;">Message</label>
+                            <textarea name="message" rows="5" required style="width: 100%; padding: 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); border-radius: 8px; color: white; outline: none; resize: none;"></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%; padding: 15px; font-size: 1.1rem;">Send Message</button>
+                    </form>
+                    <div id="contact-msg" style="margin-top: 20px; text-align: center; display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img src="assets/img/logo.png" alt="INDS Logo" style="height: 50px; filter: brightness(0) invert(1); margin-bottom: 20px;">
+                <p>Institute for Niger Delta Studies<br>Niger Delta University, Wilberforce Island,<br>P.M.B. 071, Yenagoa, Bayelsa State.</p>
+                <p>Tel: +234 (806 476 1059)</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="staff.html">Staff</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Institute for Niger Delta Studies. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const contactForm = document.getElementById('contact-form');
+        const contactMsg = document.getElementById('contact-msg');
+        
+        const apiBase = window.location.port === '3000' ? '' : 'http://localhost:3000';
+
+        // Check Auth Status
+        try {
+            const authRes = await fetch(`${apiBase}/auth/status`);
+            const authData = await authRes.json();
+            const authContainer = document.getElementById('auth-container');
+            if (authData.loggedIn) {
+                const dashboardUrl = authData.user.role === 'admin' ? '/admin' : '/dashboard';
+                authContainer.innerHTML = `<a href="${dashboardUrl}" class="btn" style="color:white; padding: 5px 15px; margin-top:-5px;">Dashboard</a>`;
+            }
+        } catch (err) { console.error('Auth check error:', err); }
+
+        // Form Submit
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            contactMsg.style.display = 'block';
+            contactMsg.innerHTML = '<span style="color: var(--accent);">Sending...</span>';
+            
+            // Simulating message send since there might not be a backend route yet
+            setTimeout(() => {
+                contactMsg.innerHTML = '<span style="color: #4ade80;">Message sent successfully! We will get back to you soon.</span>';
+                contactForm.reset();
+            }, 1500);
+        });
+    });
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

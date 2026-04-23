@@ -1,0 +1,114 @@
+<%- include('../partials/header') %>
+
+<div style="display: grid; grid-template-columns: 250px 1fr; min-height: 80vh;">
+    <!-- Sidebar -->
+    <aside style="background: var(--primary-dark); color: white; padding: 40px 20px;">
+        <h2 style="color: var(--accent); margin-bottom: 30px; font-size: 1.5rem;">Researcher Portal</h2>
+        <nav>
+            <a href="/dashboard" style="color: white; display: block; padding: 12px; border-radius: 4px; text-decoration: none; margin-bottom: 10px;">Overview</a>
+            <a href="/dashboard/submit" style="color: white; display: block; padding: 12px; border-radius: 4px; background: var(--primary); text-decoration: none; margin-bottom: 10px;">Submit Manuscript</a>
+            <a href="/dashboard/notifications" style="color: white; display: block; padding: 12px; border-radius: 4px; text-decoration: none; margin-bottom: 10px;">Notifications</a>
+            <a href="/auth/logout" style="color: white; display: block; padding: 12px; border-radius: 4px; background: #991b1b; text-decoration: none; margin-top: 50px;">Logout</a>
+        </nav>
+    </aside>
+
+    <!-- Main -->
+    <main style="padding: 40px; background: #f9fafb;">
+        <h1>Submit New Manuscript</h1>
+        <p style="opacity: 0.7; margin-bottom: 40px;">Professional submission portal for Niger Delta researchers.</p>
+
+        <% if (error_msg && error_msg.length > 0) { %>
+            <div style="background: #fee2e2; color: #991b1b; padding: 15px; border-radius: 6px; margin-bottom: 25px;">
+                <%= error_msg %>
+            </div>
+        <% } %>
+
+        <div style="background: white; padding: 40px; border-radius: 8px; box-shadow: var(--shadow); border: 1px solid var(--border-color); max-width: 800px;">
+            <form id="submissionForm">
+                <div class="form-group" style="margin-bottom: 25px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Article Title *</label>
+                    <input type="text" name="title" id="title" required placeholder="Enter the full title of your research" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 4px;">
+                </div>
+
+                <div class="form-group" style="margin-bottom: 25px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Author(s) *</label>
+                    <input type="text" name="authors" id="authors" required placeholder="e.g. John Doe, Jane Smith" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 4px;">
+                </div>
+
+                <div class="form-group" style="margin-bottom: 25px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Abstract *</label>
+                    <textarea name="abstract" id="abstract" rows="8" required placeholder="Maximum 300 words summary of your work" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 4px;"></textarea>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 30px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Manuscript File *</label>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px;">Allowed formats: PDF, DOC, DOCX (Max 10MB)</p>
+                    <input type="file" name="manuscriptFile" id="manuscriptFile" required style="padding: 15px; border: 2px dashed var(--border-color); width: 100%; border-radius: 6px; background: #fafafa;">
+                </div>
+
+                <div style="margin-top: 40px;">
+                    <button type="submit" class="btn" style="width: 100%; padding: 15px;">Submit for Review</button>
+                </div>
+            </form>
+            
+            <div id="submitResult" style="margin-top: 20px; display: none; padding: 15px; border-radius: 6px;"></div>
+
+            <script>
+                document.getElementById('submissionForm').addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const resultDiv = document.getElementById('submitResult');
+                    resultDiv.style.display = 'none';
+                    
+                    const token = '<%= token %>';
+                    if (!token) {
+                        resultDiv.textContent = 'Authorization token missing. Please login again.';
+                        resultDiv.style.background = '#fee2e2';
+                        resultDiv.style.color = '#991b1b';
+                        resultDiv.style.display = 'block';
+                        return;
+                    }
+
+                    const formData = new FormData();
+                    formData.append('title', document.getElementById('title').value);
+                    formData.append('authors', document.getElementById('authors').value);
+                    formData.append('abstract', document.getElementById('abstract').value);
+                    formData.append('manuscriptFile', document.getElementById('manuscriptFile').files[0]);
+
+                    try {
+                        const response = await fetch('/api/submissions/upload', {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: formData
+                        });
+
+                        const data = await response.json();
+
+                        if (response.ok) {
+                            resultDiv.textContent = data.message;
+                            resultDiv.style.background = '#dcfce7';
+                            resultDiv.style.color = '#166534';
+                            resultDiv.style.display = 'block';
+                            document.getElementById('submissionForm').reset();
+                        } else {
+                            resultDiv.textContent = data.error || 'An error occurred';
+                            resultDiv.style.background = '#fee2e2';
+                            resultDiv.style.color = '#991b1b';
+                            resultDiv.style.display = 'block';
+                        }
+                    } catch (err) {
+                        console.error('Upload Error:', err);
+                        resultDiv.textContent = 'A network error occurred. Please try again.';
+                        resultDiv.style.background = '#fee2e2';
+                        resultDiv.style.color = '#991b1b';
+                        resultDiv.style.display = 'block';
+                    }
+                });
+            </script>
+        </div>
+    </main>
+</div>
+
+<%- include('../partials/footer') %>
