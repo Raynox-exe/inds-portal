@@ -149,15 +149,17 @@
         const contactForm = document.getElementById('contact-form');
         const contactMsg = document.getElementById('contact-msg');
         
-        const apiBase = window.location.port === '3000' ? '' : 'http://localhost:3000';
-
+        const apiBase = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000' 
+                        ? 'http://localhost:3000' 
+                        : '';
+                        
         // Check Auth Status
         try {
             const authRes = await fetch(`${apiBase}/auth/status`);
             const authData = await authRes.json();
             const authContainer = document.getElementById('auth-container');
             if (authData.loggedIn) {
-                const dashboardUrl = authData.user.role === 'admin' ? '/admin' : '/dashboard';
+                const dashboardUrl = authData.user.role === 'admin' ? 'admin_dashboard.html' : 'member_dashboard.html';
                 authContainer.innerHTML = `<a href="${dashboardUrl}" class="btn" style="color:white; padding: 5px 15px; margin-top:-5px;">Dashboard</a>`;
             }
         } catch (err) { console.error('Auth check error:', err); }

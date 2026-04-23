@@ -326,7 +326,9 @@
         const modalBody = document.getElementById('modalBody');
         const closeModal = document.getElementById('closeModal');
         
-        const apiBase = window.location.port === '3000' ? '' : 'http://localhost:3000';
+        const apiBase = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000' 
+                        ? 'http://localhost:3000' 
+                        : '';
 
         // 1. Check Auth Status
         try {

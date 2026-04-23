@@ -491,7 +491,9 @@
     }
 
     async function loadDashboardData() {
-        const apiBase = window.location.port === '3000' ? '' : 'http://localhost:3000';
+                const apiBase = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000' 
+                        ? 'http://localhost:3000' 
+                        : '';
         try {
             // Load Stats
             const statsRes = await fetch(`${apiBase}/api/dashboard/member/stats`, { credentials: 'include' });
@@ -599,7 +601,9 @@
 
     // Populate user details from session
     document.addEventListener('DOMContentLoaded', async () => {
-        const apiBase = window.location.port === '3000' ? '' : 'http://localhost:3000';
+                const apiBase = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000' 
+                        ? 'http://localhost:3000' 
+                        : '';
         try {
             const authRes = await fetch(`${apiBase}/auth/status`, { credentials: 'include' });
             const authData = await authRes.json();
@@ -630,7 +634,9 @@
             btn.disabled = true;
 
             const formData = new FormData(form);
-            const apiBase = window.location.port === '3000' ? '' : 'http://localhost:3000';
+                    const apiBase = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000' 
+                        ? 'http://localhost:3000' 
+                        : '';
             
             try {
                 const response = await fetch(`${apiBase}/api/submissions/upload`, {

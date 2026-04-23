@@ -340,7 +340,9 @@
 
     // Populate admin details
     document.addEventListener('DOMContentLoaded', async () => {
-        const apiBase = window.location.port === '3000' ? '' : 'http://localhost:3000';
+                const apiBase = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000' 
+                        ? 'http://localhost:3000' 
+                        : '';
         try {
             const authRes = await fetch(`${apiBase}/auth/status`, { credentials: 'include' });
             const authData = await authRes.json();
@@ -361,7 +363,9 @@
     });
 
     async function loadAdminDashboardData() {
-        const apiBase = window.location.port === '3000' ? '' : 'http://localhost:3000';
+                const apiBase = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000' 
+                        ? 'http://localhost:3000' 
+                        : '';
         try {
             // Load Stats
             const statsRes = await fetch(`${apiBase}/api/dashboard/admin/stats`, { credentials: 'include' });
@@ -486,7 +490,9 @@
 
     async function deployJournal(id) {
         if (!confirm('Are you sure you want to deploy this issue live? All assigned articles will become public.')) return;
-        const apiBase = window.location.port === '3000' ? '' : 'http://localhost:3000';
+                const apiBase = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000' 
+                        ? 'http://localhost:3000' 
+                        : '';
         try {
             const res = await fetch(`${apiBase}/api/dashboard/admin/journals/deploy/${id}`, { 
                 method: 'POST',
@@ -564,7 +570,9 @@
     async function submitPublish(subId) {
         const journalId = document.getElementById('pub-journal-id').value;
         const pages = document.getElementById('pub-pages').value;
-        const apiBase = window.location.port === '3000' ? '' : 'http://localhost:3000';
+                const apiBase = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000' 
+                        ? 'http://localhost:3000' 
+                        : '';
 
         try {
             const btn = event.target;
@@ -636,7 +644,9 @@
         const volume = document.getElementById('issue-volume').value;
         const issue = document.getElementById('issue-number').value;
         const year = document.getElementById('issue-year').value;
-        const apiBase = window.location.port === '3000' ? '' : 'http://localhost:3000';
+                const apiBase = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000' 
+                        ? 'http://localhost:3000' 
+                        : '';
 
         if (!name || !volume || !issue || !year) {
             showToast('Please fill all fields.', 'error');

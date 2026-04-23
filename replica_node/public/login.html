@@ -116,7 +116,9 @@
         const data = Object.fromEntries(formData.entries());
 
         try {
-            const apiBase = window.location.port === '3000' ? '' : 'http://localhost:3000';
+            const apiBase = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000' 
+                            ? 'http://localhost:3000' 
+                            : '';
             const res = await fetch(`${apiBase}/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -137,7 +139,7 @@
             console.error('Login error:', err);
             messageContainer.innerHTML = `
                 <div style="background: rgba(153, 27, 27, 0.8); color: #fee2e2; padding: 15px; border-radius: 6px; margin-bottom: 25px; font-size: 0.9rem; font-weight: 600; border: 1px solid #991b1b; backdrop-filter: blur(4px);">
-                    Connection Error. Please ensure the server is running on port 3000.
+                    Connection Error. Please check your internet or server status.
                 </div>
             `;
         }

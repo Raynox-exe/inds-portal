@@ -238,7 +238,9 @@
         // 1. Check Auth Status
         try {
             // Point to the Node.js server explicitly if we are on a different port (like Live Server 5500)
-            const apiBase = window.location.port === '3000' ? '' : 'http://localhost:3000';
+            const apiBase = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000' 
+                            ? 'http://localhost:3000' 
+                            : '';
             const authRes = await fetch(`${apiBase}/auth/status`, { credentials: 'include' });
             const authData = await authRes.json();
             const authContainer = document.getElementById('auth-container');
