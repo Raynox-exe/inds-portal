@@ -660,6 +660,47 @@ td {
     gap: 40px;
 }
 
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+
+.hero-content {
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.premium-card:hover, .feature-box:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
 /* Mobile Nav Toggle Button */
 .mobile-nav-toggle {
     display: none;
@@ -736,15 +777,15 @@ body.nav-open {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 80%;
-        max-width: 300px;
+        width: 85%;
+        max-width: 320px;
         height: 100vh;
-        background: var(--bg-main);
+        background: var(--primary-dark);
         z-index: 1050;
-        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.3);
         transition: var(--transition);
-        padding: 80px 30px 40px;
-        display: block; /* Override none */
+        padding: 100px 40px 40px;
+        display: block; 
     }
 
     .main-nav.active {
@@ -754,27 +795,40 @@ body.nav-open {
     .main-nav ul {
         flex-direction: column;
         align-items: flex-start;
-        gap: 20px;
+        gap: 25px;
     }
 
     .main-nav a {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         width: 100%;
         display: block;
-        padding: 10px 0;
+        padding: 12px 0;
+        color: var(--text-white);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .main-nav a.active {
+        color: var(--accent);
     }
 
     .main-nav .btn {
         margin-left: 0 !important;
         text-align: center;
-        margin-top: 10px !important;
+        margin-top: 15px !important;
+        width: 100%;
     }
 
     .hero-content {
         margin-left: 0;
         margin-top: 0;
         text-align: center;
-        padding: 0 15px;
+        padding: 0;
+        width: 100%;
+    }
+
+    .hero .container {
+        padding: 0 10px;
+        width: 100%;
     }
 
     .hero p {
@@ -783,6 +837,12 @@ body.nav-open {
         padding-left: 0;
         padding-bottom: 15px;
         margin: 0 auto 1.5rem;
+    }
+
+    .glass-card {
+        padding: 40px 15px 30px;
+        border-radius: var(--radius-md);
+        width: 100%;
     }
 }
 
@@ -805,11 +865,12 @@ body.nav-open {
 
     .hero {
         height: auto;
-        padding: 100px 0 60px;
+        padding: 60px 0 40px;
+        min-height: auto;
     }
 
-    .glass-card {
-        padding: 40px 20px 30px;
+    .hero h1 {
+        font-size: 2.2rem;
     }
 
     .hero-actions {
@@ -825,6 +886,10 @@ body.nav-open {
 
     .card-grid, .features-grid, .news-grid, .responsive-grid {
         grid-template-columns: 1fr;
+    }
+
+    .premium-card {
+        padding: 25px 20px;
     }
 
     /* Fix for the non-bootstrap row/col in index.ejs */

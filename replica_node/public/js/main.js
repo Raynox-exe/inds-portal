@@ -81,6 +81,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Scroll Reveal Animation ---
+    const revealCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Optional: stop observing once animated
+                // observer.unobserve(entry.target);
+            }
+        });
+    };
+
+    const revealObserver = new IntersectionObserver(revealCallback, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach(el => revealObserver.observe(el));
+
     // --- Sticky Header Scroll Effect ---
     window.addEventListener('scroll', () => {
         const headerTop = document.querySelector('.main-header');
