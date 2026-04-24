@@ -5,18 +5,31 @@ document.addEventListener('DOMContentLoaded', () => {
     navToggle.innerHTML = '<span></span><span></span><span></span>';
     navToggle.setAttribute('aria-label', 'Toggle navigation');
     
+    const navOverlay = document.createElement('div');
+    navOverlay.className = 'main-nav-overlay';
+    
     const header = document.querySelector('.header-content .container');
     const nav = document.querySelector('.main-nav');
     
     if (header && nav) {
-        // Add toggle to DOM if not already there
+        // Add toggle and overlay to DOM if not already there
         if (!document.querySelector('.mobile-nav-toggle')) {
             header.appendChild(navToggle);
+            document.body.appendChild(navOverlay);
         }
 
         navToggle.addEventListener('click', () => {
             nav.classList.toggle('active');
             navToggle.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            document.body.classList.toggle('nav-open');
+        });
+
+        navOverlay.addEventListener('click', () => {
+            nav.classList.remove('active');
+            navToggle.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.classList.remove('nav-open');
         });
     }
 
