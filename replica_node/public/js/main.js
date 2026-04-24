@@ -1,23 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Mobile Menu Toggle ---
-    const navToggle = document.createElement('button');
-    navToggle.className = 'mobile-nav-toggle';
-    navToggle.innerHTML = '<span></span><span></span><span></span>';
-    navToggle.setAttribute('aria-label', 'Toggle navigation');
+    let navToggle = document.querySelector('.mobile-nav-toggle');
+    let navOverlay = document.querySelector('.main-nav-overlay');
     
-    const navOverlay = document.createElement('div');
-    navOverlay.className = 'main-nav-overlay';
+    // Create overlay if not in HTML
+    if (!navOverlay) {
+        navOverlay = document.createElement('div');
+        navOverlay.className = 'main-nav-overlay';
+        document.body.appendChild(navOverlay);
+    }
     
-    const header = document.querySelector('.header-content .container');
     const nav = document.querySelector('.main-nav');
     
-    if (header && nav) {
-        // Add toggle and overlay to DOM if not already there
-        if (!document.querySelector('.mobile-nav-toggle')) {
-            header.appendChild(navToggle);
-            document.body.appendChild(navOverlay);
-        }
-
+    if (navToggle && nav) {
         navToggle.addEventListener('click', () => {
             nav.classList.toggle('active');
             navToggle.classList.toggle('active');
