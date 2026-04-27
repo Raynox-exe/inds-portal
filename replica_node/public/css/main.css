@@ -120,22 +120,33 @@ img {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     text-decoration: none;
+    color: inherit;
 }
 
 .logo img {
     height: 50px;
     transition: var(--transition);
     flex-shrink: 0;
+    display: block;
 }
 
 .logo-name {
     font-family: 'Poppins', sans-serif;
     font-weight: 800;
-    font-size: 1.1rem;
-    color: var(--primary);
+    font-size: 1.15rem;
+    color: #061f5c;
     line-height: 1.2;
     white-space: nowrap;
+    display: block;
+    letter-spacing: 0.5px;
 }
 
 .logo:hover img {
@@ -745,10 +756,10 @@ td {
 /* Mobile Nav Toggle Button */
 .mobile-nav-toggle {
     display: none;
-    background: rgba(0, 0, 0, 0.05);
+    background: var(--primary);
     border: none;
     cursor: pointer;
-    padding: 10px;
+    padding: 8px;
     z-index: 1100;
     position: relative;
     width: 44px;
@@ -757,16 +768,17 @@ td {
     justify-content: center;
     align-items: center;
     border-radius: 8px;
+    flex-shrink: 0;
 }
 
 .mobile-nav-toggle span {
     display: block;
-    width: 28px;
-    height: 3px;
-    background: var(--primary);
+    width: 24px;
+    height: 2.5px;
+    background: #ffffff;
     margin: 3px 0;
     transition: var(--transition);
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
 .mobile-nav-toggle.active span:nth-child(1) {
