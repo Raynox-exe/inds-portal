@@ -52,13 +52,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         modalOverlay.style.display = 'flex';
+        // Force reflow
+        modalOverlay.offsetHeight;
+        modalOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
         if (!modalOverlay) return;
-        modalOverlay.style.display = 'none';
-        document.body.style.overflow = '';
+        modalOverlay.classList.remove('active');
+        // Wait for transition before hiding
+        setTimeout(() => {
+            if (!modalOverlay.classList.contains('active')) {
+                modalOverlay.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }, 400); // Match CSS transition time
     }
 
     // Event Delegation for Abstract Buttons (supports dynamically loaded content)
