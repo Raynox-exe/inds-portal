@@ -832,15 +832,16 @@ body.nav-open {
         width: 85%;
         max-width: 320px;
         height: 100vh;
-        background: #031338 !important;
-        background-color: #031338 !important;
+        background: #ffffff !important;
+        background-color: #ffffff !important;
         opacity: 1 !important;
         z-index: 1050;
-        box-shadow: -15px 0 50px rgba(0, 0, 0, 0.8);
+        box-shadow: -15px 0 50px rgba(0, 0, 0, 0.25);
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        padding: 90px 35px 40px;
+        padding: 90px 30px 40px;
         display: block;
         overflow-y: auto;
+        border-left: 4px solid var(--accent);
     }
 
     .main-nav.active {
@@ -850,19 +851,19 @@ body.nav-open {
     .main-nav ul {
         flex-direction: column;
         align-items: flex-start;
-        gap: 5px;
+        gap: 0;
     }
 
     .main-nav a {
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 700;
         width: 100%;
         display: block;
         padding: 14px 0;
-        color: #ffffff !important;
-        border-bottom: 1px solid rgba(255,255,255,0.12);
+        color: #061f5c !important;
+        border-bottom: 1px solid #e2e8f0;
         letter-spacing: 0.5px;
-        text-shadow: none;
+        text-transform: uppercase;
     }
 
     .main-nav a:hover {
@@ -872,6 +873,39 @@ body.nav-open {
 
     .main-nav a.active {
         color: var(--accent) !important;
+    }
+
+    /* Fix Login / Sign Up buttons inside mobile nav */
+    .main-nav li#auth-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+        padding-top: 20px;
+        border-bottom: none !important;
+    }
+
+    .main-nav li#auth-container a.btn {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        padding: 12px 20px !important;
+        margin: 0 !important;
+        font-size: 0.95rem !important;
+        white-space: nowrap !important;
+        border-bottom: none !important;
+        letter-spacing: 1px;
+    }
+
+    .main-nav li#auth-container a.btn-outline {
+        border: 2px solid var(--primary) !important;
+        color: var(--primary) !important;
+        background: transparent !important;
+    }
+
+    .main-nav li#auth-container a.btn-outline:hover {
+        background: var(--primary) !important;
+        color: white !important;
     }
 
     .main-nav .btn {
