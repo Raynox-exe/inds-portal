@@ -375,8 +375,8 @@
                             <td style="opacity: 0.8;">${art.authors}</td>
                             <td style="font-size: 0.85rem; opacity: 0.7;">Vol ${art.volume_no}, Issue ${art.issue_no}</td>
                              <td>
-                                 <a href="#" class="view-btn" data-id="${art.id}" data-title="${art.title}" data-authors="${art.authors}" data-abstract="${art.abstract}" data-pdf="${art.pdf_path}">Read Abstract</a>
-                                 <a href="${apiBase}/uploads/published/${art.pdf_path}" class="download-btn" target="_blank" title="Download PDF"><i class="fas fa-download" style="margin-right: 5px;"></i> Download</a>
+                                 <a href="#" class="view-btn" data-id="${art.id}" data-title="${art.title}" data-authors="${art.authors}" data-abstract="${art.abstract}" data-pdf="${art.file_path}">Read Abstract</a>
+                                 <a href="${apiBase}/uploads/published/${art.file_path}" class="download-btn" target="_blank" title="Download PDF"><i class="fas fa-download" style="margin-right: 5px;"></i> Download</a>
                              </td>
                         `;
                         articlesBody.appendChild(tr);

@@ -28,41 +28,58 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Modal Functionality ---
-    const modalOverlay = document.getElementById('modalOverlay');
-    const modalContent = document.getElementById('modalContent');
-    const modalClose = document.querySelector('.modal-close');
-    const abstractBtns = document.querySelectorAll('.view-abstract');
+    // --- Premium Modal Functionality ---
+    const modalOverlay = document.getElementById('abstractModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalAuthors = document.getElementById('modalAuthors');
+    const modalBody = document.getElementById('modalBody');
+    const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+    const modalClose = document.getElementById('closeModal');
+    const abstractBtns = document.querySelectorAll('.view-abstract-trigger, .view-abstract');
 
-    function openModal(title, text) {
-        if (!modalOverlay || !modalContent) return;
+    function openModal(data) {
+        if (!modalOverlay) return;
         
-        modalContent.innerHTML = `
-            <h2>${title}</h2>
-            <div class="modal-body">
-                ${text}
-            </div>
-        `;
-        modalOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent scroll
+        if (modalTitle) modalTitle.textContent = data.title || '';
+        if (modalAuthors) modalAuthors.textContent = data.authors ? 'By ' + data.authors : '';
+        if (modalBody) modalBody.textContent = data.abstract || '';
+        if (modalDownloadBtn && data.pdf) {
+            modalDownloadBtn.href = '/uploads/published/' + data.pdf;
+            modalDownloadBtn.style.display = 'flex';
+        } else if (modalDownloadBtn) {
+            modalDownloadBtn.style.display = 'none';
+        }
+        
+        modalOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
         if (!modalOverlay) return;
-        modalOverlay.classList.remove('active');
+        modalOverlay.style.display = 'none';
         document.body.style.overflow = '';
     }
 
     abstractBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            const title = btn.getAttribute('data-title');
-            const abstractId = btn.getAttribute('href').substring(1);
-            const abstractSource = document.getElementById(abstractId);
+            const data = {
+                title: btn.getAttribute('data-title'),
+                authors: btn.getAttribute('data-authors'),
+                abstract: btn.getAttribute('data-abstract'),
+                pdf: btn.getAttribute('data-pdf')
+            };
             
-            if (abstractSource) {
-                openModal(title, abstractSource.innerHTML);
+            // If it's the old style with hidden div source
+            if (!data.abstract) {
+                const href = btn.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    const source = document.getElementById(href.substring(1));
+                    if (source) data.abstract = source.innerText;
+                }
             }
+
+            openModal(data);
         });
     });
 
