@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalBody = document.getElementById('modalBody');
     const modalDownloadBtn = document.getElementById('modalDownloadBtn');
     const modalClose = document.getElementById('closeModal');
-    const abstractBtns = document.querySelectorAll('.view-abstract-trigger, .view-abstract');
+    const abstractBtns = document.querySelectorAll('.view-abstract-trigger, .view-abstract, .view-btn');
 
     function openModal(data) {
         if (!modalOverlay) return;
@@ -61,8 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = '';
     }
 
-    abstractBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
+    // Event Delegation for Abstract Buttons (supports dynamically loaded content)
+    document.body.addEventListener('click', (e) => {
+        const btn = e.target.closest('.view-abstract-trigger, .view-abstract, .view-btn');
+        if (btn) {
             e.preventDefault();
             const downloadEnabledAttr = btn.getAttribute('data-download-enabled');
             const data = {
@@ -83,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             openModal(data);
-        });
+        }
     });
 
     if (modalClose) {

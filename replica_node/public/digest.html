@@ -383,30 +383,6 @@
                         `;
                         articlesBody.appendChild(tr);
                     });
-
-                    // Add Event Listeners for Abstract Buttons
-                    document.querySelectorAll('.view-btn').forEach(btn => {
-                        btn.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            modalTitle.textContent = btn.getAttribute('data-title');
-                            modalBody.textContent = btn.getAttribute('data-abstract');
-                            document.getElementById('modalAuthors').textContent = `By ${btn.getAttribute('data-authors')}`;
-                            
-                            const downloadEnabled = btn.getAttribute('data-download-enabled') === '1' || btn.getAttribute('data-download-enabled') === 'true';
-                            const downloadBtn = document.getElementById('modalDownloadBtn');
-                            
-                            if (downloadEnabled) {
-                                const pdfLink = btn.getAttribute('data-pdf');
-                                downloadBtn.href = `${apiBase}/uploads/published/${pdfLink}`;
-                                downloadBtn.target = "_blank";
-                                downloadBtn.style.display = 'flex';
-                            } else {
-                                downloadBtn.style.display = 'none';
-                            }
-                            
-                            modal.style.display = 'flex';
-                        });
-                    });
                 } else {
                     noArticles.style.display = 'block';
                 }
@@ -427,9 +403,7 @@
             loadArticles();
         });
 
-        // Modal Close
-        closeModal.onclick = () => modal.style.display = 'none';
-        window.onclick = (e) => { if (e.target == modal) modal.style.display = 'none'; };
+        // Modal Handled by main.js
     });
 </script>
 <script src="js/main.js"></script>
