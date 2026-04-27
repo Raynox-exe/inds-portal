@@ -503,7 +503,8 @@
                                 </span>
                             </td>
                             <td style="padding: 16px;">
-                                <button class="btn btn-outline" style="padding: 5px 12px; font-size: 0.8rem;" onclick="openEditArticleModal(${art.id})">Edit Details</button>
+                                <button class="btn btn-outline" style="padding: 5px 12px; font-size: 0.8rem; margin-right: 5px;" onclick="openEditArticleModal(${art.id})">Edit Details</button>
+                                <button class="btn btn-outline" style="padding: 5px 12px; font-size: 0.8rem; border-color: #ef4444; color: #ef4444;" onclick="removeArticle(${art.id})">Remove</button>
                             </td>
                         </tr>
                     `;
@@ -805,6 +806,29 @@
             }
         } catch (err) {
             showToast('Failed to create issue.', 'error');
+        }
+    }
+    async function removeArticle(id) {
+        if (!confirm('Are you sure you want to remove this article from the digest? This action cannot be undone.')) return;
+        
+        const apiBase = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3000' 
+                        ? 'http://localhost:3000' 
+                        : '';
+
+        try {
+            const res = await fetch(`${apiBase}/api/dashboard/admin/articles/${id}`, {
+                method: 'DELETE',
+                credentials: 'include'
+            });
+            const data = await res.json();
+            if (data.success) {
+                showToast(data.message, 'success');
+                loadAdminDashboardData();
+            } else {
+                showToast(data.message || 'Failed to remove article.', 'error');
+            }
+        } catch (err) {
+            showToast('An error occurred while removing the article.', 'error');
         }
     }
 </script>

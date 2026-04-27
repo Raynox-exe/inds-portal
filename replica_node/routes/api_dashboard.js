@@ -177,6 +177,17 @@ router.put('/admin/articles/:id', isAuth, isAdmin, async (req, res) => {
     }
 });
 
+// @route   DELETE /api/dashboard/admin/articles/:id
+router.delete('/admin/articles/:id', isAuth, isAdmin, async (req, res) => {
+    try {
+        await db.query("DELETE FROM articles WHERE id = ?", [req.params.id]);
+        res.json({ success: true, message: 'Article removed successfully!' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Server Error' });
+    }
+});
+
 // @route   POST /api/dashboard/admin/journals/assign
 router.post('/admin/journals/assign', isAuth, isAdmin, async (req, res) => {
     const { journal_id, sub_id, pages } = req.body;
