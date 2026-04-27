@@ -51,14 +51,20 @@
                                     <td style="padding: 20px;"><strong style="color: var(--primary-dark); font-size: 1.1rem;"><%= art.title %></strong></td>
                                     <td style="padding: 20px; color: var(--text-muted); font-style: italic;"><%= art.authors %></td>
                                     <td style="padding: 20px;"><span style="background: #eff6ff; color: #3b82f6; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Vol <%= art.volume_no %>, Issue <%= art.issue_no %></span></td>
-                                    <td style="padding: 20px; text-align: center; white-space: nowrap;">
-                                        <button class="btn view-abstract-trigger" 
-                                                data-title="<%= art.title %>" 
-                                                data-authors="<%= art.authors %>"
-                                                data-abstract="<%= art.abstract %>"
-                                                data-pdf="<%= art.file_path %>"
-                                                style="padding: 8px 15px; font-size: 0.8rem; margin-right: 5px;">Read Abstract</button>
-                                        <a href="/uploads/published/<%= art.file_path %>" target="_blank" class="btn btn-outline" style="padding: 8px 15px; font-size: 0.8rem; border-color: var(--border-color); color: var(--text-main);"><i class="fas fa-download"></i> Download</a>
+                                    <td style="padding: 20px; text-align: center;">
+                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                                            <button class="btn view-abstract-trigger" 
+                                                    data-title="<%= art.title %>" 
+                                                    data-authors="<%= art.authors %>"
+                                                    data-abstract="<%= art.abstract %>"
+                                                    data-pdf="<%= art.file_path %>"
+                                                    data-download-enabled="<%= art.download_enabled %>"
+                                                    style="padding: 10px 20px; font-size: 0.85rem; min-width: 140px; border-radius: 8px;">Read Abstract</button>
+                                            
+                                            <% if (art.download_enabled) { %>
+                                                <a href="/uploads/published/<%= art.file_path %>" target="_blank" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.85rem; border-color: var(--border-color); color: var(--text-main); min-width: 140px; border-radius: 8px;"><i class="fas fa-download"></i> Download</a>
+                                            <% } %>
+                                        </div>
                                     </td>
                                 </tr>
                             <% }); %>
@@ -114,7 +120,15 @@
                     modalTitle.textContent = btn.getAttribute('data-title');
                     modalAuthors.textContent = 'By ' + btn.getAttribute('data-authors');
                     modalBody.textContent = btn.getAttribute('data-abstract');
-                    modalDownloadBtn.href = '/uploads/published/' + btn.getAttribute('data-pdf');
+                    
+                    const downloadEnabled = btn.getAttribute('data-download-enabled') === '1' || btn.getAttribute('data-download-enabled') === 'true';
+                    if (downloadEnabled) {
+                        modalDownloadBtn.href = '/uploads/published/' + btn.getAttribute('data-pdf');
+                        modalDownloadBtn.style.display = 'flex';
+                    } else {
+                        modalDownloadBtn.style.display = 'none';
+                    }
+                    
                     modal.style.display = 'flex';
                     document.body.style.overflow = 'hidden';
                 });

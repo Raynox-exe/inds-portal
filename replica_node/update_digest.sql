@@ -2,8 +2,9 @@
 -- Run this on your online database (e.g., via phpMyAdmin or Render Console)
 
 -- 1. Add missing columns to articles table
-ALTER TABLE articles ADD COLUMN IF NOT EXISTS authors VARCHAR(255) AFTER title;
-ALTER TABLE articles ADD COLUMN IF NOT EXISTS abstract TEXT AFTER authors;
+-- These are commented out because they were already created successfully
+-- ALTER TABLE articles ADD authors VARCHAR(255) AFTER title;
+-- ALTER TABLE articles ADD abstract TEXT AFTER authors;
 
 -- 2. Insert the Journal Volume if it doesn't exist
 INSERT IGNORE INTO journals (name, volume_no, issue_no, publication_year, status)

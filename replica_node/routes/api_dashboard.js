@@ -144,6 +144,39 @@ router.get('/admin/ready-to-publish', isAuth, isAdmin, async (req, res) => {
     }
 });
 
+// @route   GET /api/dashboard/admin/articles
+router.get('/admin/articles', isAuth, isAdmin, async (req, res) => {
+    try {
+        const [articles] = await db.query(`
+            SELECT a.*, j.volume_no, j.issue_no, j.publication_year 
+            FROM articles a
+            JOIN journals j ON a.journal_id = j.id
+            ORDER BY a.created_at DESC
+        `);
+        res.json({ success: true, articles });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Server Error' });
+    }
+});
+
+// @route   PUT /api/dashboard/admin/articles/:id
+router.put('/admin/articles/:id', isAuth, isAdmin, async (req, res) => {
+    const { title, authors, abstract, download_enabled, journal_id } = req.body;
+    try {
+        await db.query(`
+            UPDATE articles 
+            SET title = ?, authors = ?, abstract = ?, download_enabled = ?, journal_id = ? 
+            WHERE id = ?
+        `, [title, authors, abstract, download_enabled, journal_id, req.params.id]);
+        
+        res.json({ success: true, message: 'Article updated successfully!' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Server Error' });
+    }
+});
+
 // @route   POST /api/dashboard/admin/journals/assign
 router.post('/admin/journals/assign', isAuth, isAdmin, async (req, res) => {
     const { journal_id, sub_id, pages } = req.body;
@@ -152,7 +185,7 @@ router.post('/admin/journals/assign', isAuth, isAdmin, async (req, res) => {
         if (!sub) return res.status(404).json({ success: false, message: 'Submission not found' });
 
         await db.query(`
-            INSERT INTO articles (journal_id, submission_id, title, authors, abstract, pdf_path, page_range, status) 
+            INSERT INTO articles (journal_id, submission_id, title, authors, abstract, file_path, page_range, status) 
             VALUES (?, ?, ?, ?, ?, ?, ?, 'published')
         `, [journal_id, sub_id, sub.title, sub.author_name || sub.authors, sub.abstract, sub.file_path, pages]);
         

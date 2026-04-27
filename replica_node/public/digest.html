@@ -374,9 +374,11 @@
                             <td><strong style="color:var(--primary-dark);">${art.title}</strong></td>
                             <td style="opacity: 0.8;">${art.authors}</td>
                             <td style="font-size: 0.85rem; opacity: 0.7;">Vol ${art.volume_no}, Issue ${art.issue_no}</td>
-                             <td>
-                                 <a href="#" class="view-btn" data-id="${art.id}" data-title="${art.title}" data-authors="${art.authors}" data-abstract="${art.abstract}" data-pdf="${art.file_path}">Read Abstract</a>
-                                 <a href="${apiBase}/uploads/published/${art.file_path}" class="download-btn" target="_blank" title="Download PDF"><i class="fas fa-download" style="margin-right: 5px;"></i> Download</a>
+                             <td style="text-align: center;">
+                                 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                                     <a href="#" class="view-btn" data-id="${art.id}" data-title="${art.title.replace(/"/g, '&quot;')}" data-authors="${art.authors.replace(/"/g, '&quot;')}" data-abstract="${art.abstract.replace(/"/g, '&quot;')}" data-pdf="${art.file_path}" data-download-enabled="${art.download_enabled}" style="min-width: 140px; text-align: center;">Read Abstract</a>
+                                     ${art.download_enabled ? `<a href="${apiBase}/uploads/published/${art.file_path}" class="download-btn" target="_blank" title="Download PDF" style="min-width: 140px; text-align: center; margin-left: 0;"><i class="fas fa-download" style="margin-right: 5px;"></i> Download</a>` : ''}
+                                 </div>
                              </td>
                         `;
                         articlesBody.appendChild(tr);
@@ -390,10 +392,17 @@
                             modalBody.textContent = btn.getAttribute('data-abstract');
                             document.getElementById('modalAuthors').textContent = `By ${btn.getAttribute('data-authors')}`;
                             
-                            const pdfLink = btn.getAttribute('data-pdf');
+                            const downloadEnabled = btn.getAttribute('data-download-enabled') === '1' || btn.getAttribute('data-download-enabled') === 'true';
                             const downloadBtn = document.getElementById('modalDownloadBtn');
-                            downloadBtn.href = `${apiBase}/uploads/published/${pdfLink}`;
-                            downloadBtn.target = "_blank";
+                            
+                            if (downloadEnabled) {
+                                const pdfLink = btn.getAttribute('data-pdf');
+                                downloadBtn.href = `${apiBase}/uploads/published/${pdfLink}`;
+                                downloadBtn.target = "_blank";
+                                downloadBtn.style.display = 'flex';
+                            } else {
+                                downloadBtn.style.display = 'none';
+                            }
                             
                             modal.style.display = 'flex';
                         });

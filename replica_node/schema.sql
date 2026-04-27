@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS articles (
     status ENUM('draft', 'pending', 'published', 'rejected') DEFAULT 'draft',
     views INT DEFAULT 0,
     file_path VARCHAR(255), -- For PDF manuscripts
+    download_enabled BOOLEAN DEFAULT TRUE,
     published_at DATETIME,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE SET NULL,

@@ -43,7 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (modalTitle) modalTitle.textContent = data.title || '';
         if (modalAuthors) modalAuthors.textContent = data.authors ? 'By ' + data.authors : '';
         if (modalBody) modalBody.textContent = data.abstract || '';
-        if (modalDownloadBtn && data.pdf) {
+        
+        if (modalDownloadBtn && data.pdf && data.downloadEnabled) {
             modalDownloadBtn.href = '/uploads/published/' + data.pdf;
             modalDownloadBtn.style.display = 'flex';
         } else if (modalDownloadBtn) {
@@ -63,11 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
     abstractBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
+            const downloadEnabledAttr = btn.getAttribute('data-download-enabled');
             const data = {
                 title: btn.getAttribute('data-title'),
                 authors: btn.getAttribute('data-authors'),
                 abstract: btn.getAttribute('data-abstract'),
-                pdf: btn.getAttribute('data-pdf')
+                pdf: btn.getAttribute('data-pdf'),
+                downloadEnabled: downloadEnabledAttr === null || downloadEnabledAttr === '1' || downloadEnabledAttr === 'true'
             };
             
             // If it's the old style with hidden div source
