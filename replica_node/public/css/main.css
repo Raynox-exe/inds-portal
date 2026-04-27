@@ -116,9 +116,26 @@ img {
     align-items: center;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
 .logo img {
     height: 50px;
     transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.logo-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--primary);
+    line-height: 1.2;
+    white-space: nowrap;
 }
 
 .logo:hover img {
@@ -311,6 +328,7 @@ img {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 30px;
+    overflow: hidden;
 }
 
 .premium-card {
@@ -545,8 +563,21 @@ td {
 
 .footer-col p, .footer-col li {
     font-size: 0.95rem;
-    opacity: 0.8;
+    color: rgba(255,255,255,0.85);
     margin-bottom: 12px;
+}
+
+.footer-col a {
+    color: rgba(255,255,255,0.85) !important;
+    transition: color 0.3s;
+}
+
+.footer-col a:hover {
+    color: var(--accent) !important;
+}
+
+.footer-col p {
+    color: rgba(255,255,255,0.85);
 }
 
 .footer-bottom {
@@ -554,7 +585,7 @@ td {
     padding-top: 20px;
     text-align: center;
     font-size: 0.85rem;
-    opacity: 0.6;
+    color: rgba(255,255,255,0.7);
 }
 
 /* --- Modal Styles --- */
@@ -941,8 +972,28 @@ body.nav-open {
         width: 100%;
     }
 
-    .card-grid, .features-grid, .news-grid, .responsive-grid {
+    /* Fix card-grid overflow on mobile - reduce minmax */
+    .card-grid {
         grid-template-columns: 1fr;
+    }
+
+    .features-grid, .news-grid, .responsive-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Hamburger button — more visible */
+    .mobile-nav-toggle {
+        display: flex;
+        background: var(--primary);
+    }
+
+    .mobile-nav-toggle span {
+        background: white;
+    }
+
+    /* Logo name smaller on mobile */
+    .logo-name {
+        font-size: 0.85rem;
     }
 
     .premium-card {

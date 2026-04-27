@@ -34,10 +34,15 @@
     <div class="header-content">
         <div class="container">
             <div class="logo">
-                <a href="index.html">
+                <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
                     <img src="assets/img/logo.png" alt="INDS Logo">
+                    <span class="logo-name">INDS</span>
                 </a>
             </div>
+            <!-- Mobile Nav Toggle -->
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
             <nav class="main-nav">
                 <ul id="nav-links">
                     <li><a href="index.html">Home</a></li>
@@ -67,7 +72,7 @@
 
     <section class="section">
         <div class="container">
-            <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+            <div class="card-grid">
                 <div class="premium-card">
                     <div style="font-size: 3rem; margin-bottom: 25px; color: var(--accent);">
                         <i class="fas fa-book-open"></i>
