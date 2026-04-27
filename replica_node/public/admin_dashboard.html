@@ -450,7 +450,7 @@
                                 <span style="color: ${u.status === 'active' ? '#166534' : '#ef4444'}; font-weight: 600; font-size: 0.9rem;"><i class="fa fa-circle" style="font-size: 10px; margin-right: 5px;"></i> ${u.status}</span>
                             </td>
                             <td style="padding: 16px;">
-                                <button class="btn btn-outline" style="padding: 5px 12px; font-size: 0.8rem; margin-right: 10px;" onclick="alert('Edit User Roles')">Edit</button>
+                                <button class="btn btn-outline" style="padding: 5px 12px; font-size: 0.8rem; margin-right: 10px; border-color: var(--primary); color: var(--primary);" onclick="alert('Edit User Roles')">Edit</button>
                                 <button class="btn btn-outline" style="padding: 5px 12px; font-size: 0.8rem; border-color: #ef4444; color: #ef4444;" onclick="alert('User Suspended')">Suspend</button>
                             </td>
                         </tr>
@@ -502,9 +502,11 @@
                                     ${art.download_enabled ? 'Enabled' : 'Disabled'}
                                 </span>
                             </td>
-                            <td style="padding: 16px;">
-                                <button class="btn btn-outline" style="padding: 5px 12px; font-size: 0.8rem; margin-right: 5px;" onclick="openEditArticleModal(${art.id})">Edit Details</button>
-                                <button class="btn btn-outline" style="padding: 5px 12px; font-size: 0.8rem; border-color: #ef4444; color: #ef4444;" onclick="removeArticle(${art.id})">Remove</button>
+                             <td style="padding: 16px;">
+                                <div style="display: flex; flex-direction: column; gap: 8px; width: 100px;">
+                                    <button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.85rem; border-color: var(--primary); color: var(--primary);" onclick="openEditArticleModal(${art.id})">Edit</button>
+                                    <button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.85rem; border-color: #ef4444; color: #ef4444;" onclick="removeArticle(${art.id})">Remove</button>
+                                </div>
                             </td>
                         </tr>
                     `;
