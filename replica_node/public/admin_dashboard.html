@@ -38,6 +38,10 @@
                     <img src="assets/img/logo.png" alt="INDS Logo">
                 </a>
             </div>
+            <!-- Mobile Nav Toggle -->
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -53,7 +57,7 @@
     </div>
 </header>
 
-<div style="display: grid; grid-template-columns: 250px 1fr; height: calc(100vh - 80px); overflow: hidden;">
+<div class="dashboard-container" style="display: grid; grid-template-columns: 250px 1fr; height: calc(100vh - 80px); overflow: hidden;">
     <!-- Sidebar -->
     <aside style="background: var(--primary-dark); color: white; padding: 40px 20px; box-shadow: 2px 0 10px rgba(0,0,0,0.1); overflow-y: auto; height: 100%;">
         <h2 style="color: var(--accent); margin-bottom: 40px; font-size: 1.6rem; text-align: center; font-weight: 800; letter-spacing: 1px;">Admin<br>Portal</h2>
@@ -71,15 +75,20 @@
     <!-- Main -->
     <main style="padding: 40px; background: #f3f4f6; position: relative; overflow-y: auto; height: 100%;">
         
-        <!-- Overview View -->
-        <div id="overview-view" class="dashboard-view">
+    <!-- Mobile Menu Toggle -->
+    <button class="dashboard-menu-toggle" style="display: none;" onclick="document.querySelector('.dashboard-container aside').classList.toggle('active'); this.classList.toggle('active');">
+        <i class="fas fa-bars"></i> Menu
+    </button>
+
+    <!-- Overview View -->
+    <div id="overview-view" class="dashboard-view">
             <header style="margin-bottom: 40px;">
                 <h1 id="admin-welcome">Welcome, Administrator</h1>
                 <p style="opacity: 0.7;">Central control for the INDS Research Management System.</p>
             </header>
 
             <!-- Stats -->
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-bottom: 40px;">
+            <div class="stats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-bottom: 40px;">
                 <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid var(--border-color); position: relative; overflow: hidden;">
                     <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--primary);"></div>
                     <h4 style="color: var(--text-muted); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Total Researchers</h4>
@@ -416,10 +425,10 @@
                     pending.forEach(s => {
                         const row = `
                             <tr style="border-bottom: 1px solid var(--border-color); transition: background 0.2s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
-                                <td style="padding: 20px 16px; font-weight: 600; color: var(--text-main); font-size: 1.05rem;">${s.author_name}</td>
-                                <td style="padding: 20px 16px; color: var(--text-muted);">${s.title}</td>
-                                <td style="padding: 20px 16px; color: var(--text-muted);">${new Date(s.submitted_at || s.created_at).toLocaleDateString()}</td>
-                                <td style="padding: 20px 16px;">
+                                <td data-label="Researcher" style="padding: 20px 16px; font-weight: 600; color: var(--text-main); font-size: 1.05rem;">${s.author_name}</td>
+                                <td data-label="Manuscript Title" style="padding: 20px 16px; color: var(--text-muted);">${s.title}</td>
+                                <td data-label="Date Submitted" style="padding: 20px 16px; color: var(--text-muted);">${new Date(s.submitted_at || s.created_at).toLocaleDateString()}</td>
+                                <td data-label="Action" style="padding: 20px 16px;">
                                     <a href="${apiBase}/admin/review/${s.id}" class="btn" style="padding: 8px 20px; font-size: 0.9rem; border-radius: 6px; text-decoration:none;">Review Submission</a>
                                 </td>
                             </tr>
@@ -494,15 +503,15 @@
                 articlesData.articles.forEach(art => {
                     const row = `
                         <tr style="border-bottom: 1px solid var(--border-color);">
-                            <td style="padding: 16px; font-weight: 600;">${art.title}</td>
-                            <td style="padding: 16px; color: var(--text-muted);">${art.authors}</td>
-                            <td style="padding: 16px;">Vol ${art.volume_no}, Issue ${art.issue_no}</td>
-                            <td style="padding: 16px;">
+                            <td data-label="Article Title" style="padding: 16px; font-weight: 600;">${art.title}</td>
+                            <td data-label="Author(s)" style="padding: 16px; color: var(--text-muted);">${art.authors}</td>
+                            <td data-label="Volume/Issue" style="padding: 16px;">Vol ${art.volume_no}, Issue ${art.issue_no}</td>
+                            <td data-label="Downloads" style="padding: 16px;">
                                 <span style="padding: 4px 10px; background: ${art.download_enabled ? '#dcfce7' : '#fee2e2'}; color: ${art.download_enabled ? '#166534' : '#991b1b'}; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">
                                     ${art.download_enabled ? 'Enabled' : 'Disabled'}
                                 </span>
                             </td>
-                             <td style="padding: 16px;">
+                             <td data-label="Actions" style="padding: 16px;">
                                 <div style="display: flex; flex-direction: column; gap: 8px; width: 100px;">
                                     <button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.85rem; border-color: var(--primary); color: var(--primary);" onclick="openEditArticleModal(${art.id})">Edit</button>
                                     <button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.85rem; border-color: #ef4444; color: #ef4444;" onclick="removeArticle(${art.id})">Remove</button>

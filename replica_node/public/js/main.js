@@ -107,6 +107,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Dashboard Sidebar Toggle (Mobile) ---
+    const dashboardToggle = document.querySelector('.dashboard-menu-toggle');
+    const dashboardSidebar = document.querySelector('.dashboard-container aside');
+    if (dashboardToggle && dashboardSidebar) {
+        dashboardToggle.addEventListener('click', () => {
+            dashboardSidebar.classList.toggle('active');
+            dashboardToggle.classList.toggle('active');
+        });
+        
+        // Close sidebar when clicking a link
+        const sidebarLinks = dashboardSidebar.querySelectorAll('a');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                dashboardSidebar.classList.remove('active');
+                dashboardToggle.classList.remove('active');
+            });
+        });
+    }
+
     // --- Scroll Reveal Animation ---
     const revealCallback = (entries, observer) => {
         entries.forEach(entry => {
@@ -129,10 +148,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Sticky Header Scroll Effect ---
     window.addEventListener('scroll', () => {
         const headerTop = document.querySelector('.main-header');
-        if (window.scrollY > 50) {
-            headerTop.classList.add('scrolled');
-        } else {
-            headerTop.classList.remove('scrolled');
+        if (headerTop) {
+            if (window.scrollY > 50) {
+                headerTop.classList.add('scrolled');
+            } else {
+                headerTop.classList.remove('scrolled');
+            }
         }
     });
 });
