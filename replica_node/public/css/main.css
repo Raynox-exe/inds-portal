@@ -1074,49 +1074,72 @@ body.nav-open {
     }
 
     .table-container tr { 
-        margin-bottom: 20px;
+        margin-bottom: 25px;
         border: 1px solid var(--border-color);
-        border-radius: 12px;
+        border-radius: 16px;
         background: white;
         overflow: hidden;
-        box-shadow: var(--shadow-sm);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
     .table-container td { 
         border: none;
         border-bottom: 1px solid #f1f5f9; 
         position: relative;
-        padding-left: 45% !important; 
-        text-align: right !important;
-        padding: 15px !important;
+        padding: 15px 15px 15px 40% !important; 
+        text-align: left !important;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
     }
 
     .table-container td:before { 
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        width: 40%; 
-        padding-right: 10px; 
-        white-space: nowrap;
         content: attr(data-label);
-        font-weight: 700;
-        text-align: left;
-        color: var(--primary);
-        font-size: 0.8rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 35%; 
+        height: 100%;
+        padding: 15px;
+        background: #f8fafc;
+        color: var(--primary-dark);
+        font-weight: 800;
+        font-size: 0.75rem;
         text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        border-right: 1px solid #eef2f6;
     }
 
     .table-container td:last-child {
         border-bottom: none;
-        text-align: center !important;
-        padding-left: 15px !important;
     }
     
-    /* Center actions on mobile cards */
-    .table-container td:last-child div {
-        justify-content: center;
+    /* Filter Section Mobile */
+    .filter-section {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 20px !important;
+        padding: 25px !important;
+    }
+
+    .filter-group {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
         width: 100% !important;
     }
+
+    .filter-group select {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    #clear-filters {
+        width: 100% !important;
+    }
+
 
     /* Modal Mobile Adjustments */
     .modal-card {
