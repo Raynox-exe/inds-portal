@@ -1204,3 +1204,69 @@ body.nav-open {
         font-size: 1.8rem;
     }
 }
+/* --- About Page Specifics --- */
+.about-hero h1 {
+    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.about-content {
+    position: relative;
+    overflow: hidden;
+}
+
+.about-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(12, 113, 195, 0.15) 0%, transparent 70%);
+    z-index: 0;
+}
+
+.history-mission, .sidebar-card {
+    position: relative;
+    z-index: 1;
+}
+
+.objectives-list li span {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.9);
+}
+
+@media (max-width: 991px) {
+    .responsive-grid {
+        grid-template-columns: 1fr !important;
+        gap: 50px !important;
+    }
+    
+    .about-hero {
+        padding: 80px 0 !important;
+    }
+    
+    .about-content {
+        padding: 60px 0 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero h1 {
+        font-size: 2.8rem !important;
+    }
+    
+    .leadership-profile img {
+        width: 80px !important;
+        height: 80px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-hero h1 {
+        font-size: 2.2rem !important;
+    }
+    
+    .about-hero p {
+        font-size: 1.1rem !important;
+    }
+}
