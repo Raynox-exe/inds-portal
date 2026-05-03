@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS payments (
 -- Hash: $2a$10$7pL0Rz9f1x3K3z.k9Wn9u.vE.V/S8f9A0W9lFvE8U.V8zGfW9lFvE
 -- Note: Replace with actual hash in production
 INSERT IGNORE INTO users (full_name, email, password, role) 
-VALUES ('System Admin', 'admin@inds.org.ng', '$2a$10$7pL0Rz9f1x3K3z.k9Wn9u.vE.V/S8f9A0W9lFvE8U.V8zGfW9lFvE', 'admin');
+VALUES ('System Admin', 'admin@inds.org.ng', '$2b$10$4M8L8SGYvOvfCx5Qr6r3Lu1zdFvffBtlRxrPjogPP4VgE7EIMiPMS', 'admin');
 
 -- Insert initial categories
 INSERT IGNORE INTO categories (name, description) VALUES 
