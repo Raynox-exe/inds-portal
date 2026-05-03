@@ -1086,12 +1086,11 @@ body.nav-open {
         border: none;
         border-bottom: 1px solid #f1f5f9; 
         position: relative;
-        padding: 15px 15px 15px 40% !important; 
+        padding: 15px 15px 15px 38% !important; 
         text-align: left !important;
         min-height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
+        display: block;
+        width: 100% !important;
     }
 
     .table-container td:before { 
@@ -1099,18 +1098,32 @@ body.nav-open {
         position: absolute;
         top: 0;
         left: 0;
-        width: 35%; 
+        width: 33%; 
         height: 100%;
         padding: 15px;
         background: #f8fafc;
         color: var(--primary-dark);
         font-weight: 800;
-        font-size: 0.75rem;
+        font-size: 0.65rem;
         text-transform: uppercase;
         display: flex;
         align-items: center;
         border-right: 1px solid #eef2f6;
     }
+
+    /* Action Column Special Case */
+    .table-container td[data-label="Action"] {
+        padding: 20px 15px !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .table-container td[data-label="Action"]:before {
+        display: none;
+    }
+
 
     .table-container td:last-child {
         border-bottom: none;
