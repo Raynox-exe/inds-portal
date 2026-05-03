@@ -87,7 +87,7 @@ INSERT IGNORE INTO categories (name, description) VALUES
 
 -- Insert initial Journal issue
 INSERT IGNORE INTO journals (name, volume_no, issue_no, publication_year, status)
-VALUES ("Volume 12, Issue 1 (June 2017)", 12, 1, 2017, 'published');
+VALUES ('Volume 12, Issue 1 (June 2017)', 12, 1, 2017, 'published');
 
 SET @journal_id = LAST_INSERT_ID();
 

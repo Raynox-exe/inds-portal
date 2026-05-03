@@ -12,7 +12,10 @@ const pool = mysql.createPool({
     queueLimit: 0,
     enableKeepAlive: true,
     keepAliveInitialDelay: 10000,
-    connectTimeout: 60000
+    connectTimeout: 60000,
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 
 module.exports = pool.promise();
