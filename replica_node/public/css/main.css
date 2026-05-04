@@ -342,6 +342,16 @@ img {
     overflow: hidden;
 }
 
+.programs-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 992px) {
+    .programs-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .premium-card {
     background: var(--bg-main);
     border-radius: var(--radius-md);
