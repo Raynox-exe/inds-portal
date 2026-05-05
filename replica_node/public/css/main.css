@@ -1007,6 +1007,14 @@ body.nav-open {
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    .table-container {
+        padding: 10px;
+    }
+
     .section {
         padding: 40px 0;
     }
@@ -1101,7 +1109,7 @@ body.nav-open {
         border: none;
         border-bottom: 1px solid #f1f5f9; 
         position: relative;
-        padding: 15px 15px 15px 42% !important; 
+        padding: 45px 15px 15px 15px !important; 
         text-align: left !important;
         min-height: 50px;
         display: block;
@@ -1115,17 +1123,18 @@ body.nav-open {
         position: absolute;
         top: 0;
         left: 0;
-        width: 38%; 
-        height: 100%;
-        padding: 15px;
+        width: 100%; 
+        height: 35px;
+        padding: 8px 15px;
         background: #f8fafc;
         color: var(--primary-dark);
         font-weight: 800;
-        font-size: 0.65rem;
+        font-size: 0.7rem;
         text-transform: uppercase;
         display: flex;
-        align-items: flex-start; /* Changed from center to align with content top */
-        border-right: 1px solid #eef2f6;
+        align-items: center;
+        border-right: none;
+        border-bottom: 1px solid #eef2f6;
     }
 
     /* Action Column Special Case */
