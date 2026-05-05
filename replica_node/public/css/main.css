@@ -1101,11 +1101,13 @@ body.nav-open {
         border: none;
         border-bottom: 1px solid #f1f5f9; 
         position: relative;
-        padding: 15px 15px 15px 38% !important; 
+        padding: 15px 15px 15px 42% !important; 
         text-align: left !important;
         min-height: 50px;
         display: block;
         width: 100% !important;
+        word-break: break-word;
+        overflow-wrap: break-word;
     }
 
     .table-container td:before { 
@@ -1113,7 +1115,7 @@ body.nav-open {
         position: absolute;
         top: 0;
         left: 0;
-        width: 33%; 
+        width: 38%; 
         height: 100%;
         padding: 15px;
         background: #f8fafc;
@@ -1122,7 +1124,7 @@ body.nav-open {
         font-size: 0.65rem;
         text-transform: uppercase;
         display: flex;
-        align-items: center;
+        align-items: flex-start; /* Changed from center to align with content top */
         border-right: 1px solid #eef2f6;
     }
 
