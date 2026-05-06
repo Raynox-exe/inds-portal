@@ -75,10 +75,21 @@ router.post('/review/:id', async (req, res) => {
     }
 });
 
+const fs = require('fs');
+const path = require('path');
+const crossref = require('../utils/crossref');
+
 // @route   GET /admin/journals
 router.get('/journals', async (req, res) => {
     try {
         const [journals] = await db.query("SELECT * FROM journals ORDER BY volume_no DESC, issue_no DESC");
+        
+        // Fetch articles for each journal
+        for (let journal of journals) {
+            const [articles] = await db.query("SELECT * FROM articles WHERE journal_id = ?", [journal.id]);
+            journal.articles = articles;
+        }
+
         const [readyToPublish] = await db.query(`
             SELECT * FROM submissions 
             WHERE status = 'accepted' 
@@ -108,9 +119,6 @@ router.post('/journals/create', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
-
-const fs = require('fs');
-const path = require('path');
 
 // @route   POST /admin/journals/assign
 router.post('/journals/assign', async (req, res) => {
@@ -144,6 +152,50 @@ router.get('/journals/deploy/:id', async (req, res) => {
     try {
         await db.query("UPDATE journals SET status = 'published' WHERE id = ?", [req.params.id]);
         req.flash('success', 'Journal Issue DEPLOYED successfully! Content is now live.');
+        res.redirect('/admin/journals');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
+
+// @route   POST /admin/articles/doi-register/:id
+router.post('/articles/doi-register/:id', async (req, res) => {
+    try {
+        const articleId = req.params.id;
+        const [[article]] = await db.query("SELECT * FROM articles WHERE id = ?", [articleId]);
+        const [[journal]] = await db.query("SELECT * FROM journals WHERE id = ?", [article.journal_id]);
+
+        if (!article.doi) {
+            const suffix = crossref.generateDOISuffix(article, journal);
+            article.doi = `${process.env.DOI_PREFIX}/${suffix}`;
+            await db.query("UPDATE articles SET doi = ?, doi_suffix = ? WHERE id = ?", [article.doi, suffix, articleId]);
+        }
+
+        const xml = crossref.generateCrossrefXML(article, journal);
+        
+        try {
+            const result = await crossref.submitToCrossref(xml, false); // false for test environment
+            await db.query(`
+                UPDATE articles 
+                SET crossref_status = 'submitted', 
+                    crossref_submitted_at = NOW(),
+                    crossref_response = ?
+                WHERE id = ?
+            `, [JSON.stringify(result), articleId]);
+            
+            req.flash('success', 'DOI Registration submitted to Crossref Test API.');
+        } catch (error) {
+            await db.query(`
+                UPDATE articles 
+                SET crossref_status = 'failed', 
+                    crossref_response = ?
+                WHERE id = ?
+            `, [JSON.stringify(error), articleId]);
+            
+            req.flash('danger', 'DOI Registration failed. Check response logs.');
+        }
+
         res.redirect('/admin/journals');
     } catch (err) {
         console.error(err);

@@ -68,6 +68,51 @@
                             </div>
                         </div>
 
+                        <!-- Assigned Articles List -->
+                        <div style="margin-top: 25px;">
+                            <h5 style="margin-bottom: 10px; font-size: 0.9rem; border-bottom: 1px solid #eee; padding-bottom: 5px;">Published Articles & DOI Status</h5>
+                            <% if (j.articles && j.articles.length > 0) { %>
+                                <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                                    <thead>
+                                        <tr style="text-align: left; background: #f9fafb;">
+                                            <th style="padding: 10px;">Article Title</th>
+                                            <th style="padding: 10px;">DOI</th>
+                                            <th style="padding: 10px;">Status</th>
+                                            <th style="padding: 10px;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% j.articles.forEach(article => { %>
+                                            <tr style="border-bottom: 1px solid #eee;">
+                                                <td style="padding: 10px;"><%= article.title %></td>
+                                                <td style="padding: 10px; font-family: monospace; font-size: 0.75rem;">
+                                                    <%= article.doi || 'Not Assigned' %>
+                                                </td>
+                                                <td style="padding: 10px;">
+                                                    <span style="padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; background: <%= article.crossref_status === 'registered' ? '#dcfce7' : (article.crossref_status === 'failed' ? '#fee2e2' : '#fef9c3') %>; color: <%= article.crossref_status === 'registered' ? '#166534' : (article.crossref_status === 'failed' ? '#991b1b' : '#854d0e') %>;">
+                                                        <%= (article.crossref_status || 'pending').toUpperCase() %>
+                                                    </span>
+                                                </td>
+                                                <td style="padding: 10px;">
+                                                    <% if (article.crossref_status !== 'registered' && article.crossref_status !== 'submitted') { %>
+                                                        <form action="/admin/articles/doi-register/<%= article.id %>" method="POST">
+                                                            <button type="submit" class="btn" style="padding: 5px 10px; font-size: 0.7rem; background: #2563eb;">Register DOI</button>
+                                                        </form>
+                                                    <% } else if (article.crossref_status === 'submitted') { %>
+                                                        <span style="font-size: 0.7rem; color: #4b5563;">Processing...</span>
+                                                    <% } else { %>
+                                                        <span style="color: #166534;"><i class="fas fa-check-circle"></i></span>
+                                                    <% } %>
+                                                </td>
+                                            </tr>
+                                        <% }); %>
+                                    </tbody>
+                                </table>
+                            <% } else { %>
+                                <p style="font-size: 0.8rem; color: #9ca3af; font-style: italic;">No articles assigned to this issue yet.</p>
+                            <% } %>
+                        </div>
+
                         <!-- Assign Paper -->
                         <% if (j.status === 'draft' && readyToPublish.length > 0) { %>
                             <div style="margin-top: 20px; background: #fafafa; padding: 15px; border-radius: 6px;">

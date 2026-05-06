@@ -118,4 +118,30 @@ router.get('/submission', (req, res) => {
     res.render('submission', { title: 'Online Submission | INDS' });
 });
 
+// @route   GET /article/:id
+router.get('/article/:id', async (req, res) => {
+    try {
+        const articleId = req.params.id;
+        const [articles] = await db.query(`
+            SELECT a.*, j.volume_no, j.issue_no, j.publication_year 
+            FROM articles a 
+            JOIN journals j ON a.journal_id = j.id 
+            WHERE a.id = ? AND j.status = 'published'
+        `, [articleId]);
+
+        if (articles.length === 0) {
+            return res.status(404).render('404', { title: 'Article Not Found | INDS' });
+        }
+
+        const article = articles[0];
+        res.render('article', { 
+            title: `${article.title} | INDS`,
+            article 
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
+
 module.exports = router;

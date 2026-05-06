@@ -62,7 +62,9 @@
                                                     data-abstract="<%= art.abstract %>"
                                                     data-pdf="<%= art.file_path %>"
                                                     data-download-enabled="<%= art.download_enabled %>"
-                                                    style="padding: 10px 20px; font-size: 0.85rem; min-width: 140px; border-radius: 8px;">Read Abstract</button>
+                                                    style="padding: 10px 20px; font-size: 0.85rem; min-width: 140px; border-radius: 8px;">Quick Preview</button>
+                                            
+                                            <a href="/article/<%= art.id %>" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.85rem; border-color: var(--primary); color: var(--primary); min-width: 140px; border-radius: 8px;"><i class="fas fa-external-link-alt"></i> Full View</a>
                                             
                                             <% if (art.download_enabled) { %>
                                                 <a href="/uploads/published/<%= art.file_path %>" target="_blank" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.85rem; border-color: var(--border-color); color: var(--text-main); min-width: 140px; border-radius: 8px;"><i class="fas fa-download"></i> Download</a>
