@@ -1097,12 +1097,41 @@ body.nav-open {
     }
 
     .table-container tr { 
-        margin-bottom: 25px;
+        margin-bottom: 30px;
         border: 1px solid var(--border-color);
         border-radius: 16px;
         background: white;
         overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        transition: var(--transition);
+        position: relative;
+        padding-left: 6px; /* Space for the accent line */
+    }
+
+    /* Dynamic Left Accent Line for Mobile Cards */
+    .table-container tr::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 6px;
+        background: var(--primary);
+        transition: var(--transition);
+        opacity: 0.7;
+    }
+
+    .table-container tr:hover {
+        transform: translateY(-5px) scale(1.01);
+        box-shadow: 0 15px 35px rgba(6, 31, 92, 0.15);
+        border-color: var(--primary-light);
+        background: #fdfdfd;
+    }
+
+    .table-container tr:hover::before {
+        width: 12px;
+        background: linear-gradient(to bottom, var(--primary), var(--primary-light));
+        opacity: 1;
     }
 
     .table-container td { 
